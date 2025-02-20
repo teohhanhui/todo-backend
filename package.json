@@ -1,0 +1,23 @@
+{
+  "name": "todo-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "start": "node dist/server",
+    "start:watch": "tsc --watch & nodemon --watch dist"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^5.0.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.8",
+    "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.13.4",
+    "nodemon": "^3.1.9",
+    "typescript": "^5.7.3"
+  }
+}

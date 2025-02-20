@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "strict": true,
+
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "paths": {
+      "@app/*": [
+        "./src/app/*"
+      ],
+    },
+
+    "outDir": "dist",
+
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "target": "es2022",
+
+    "composite": true,
+
+    "skipLibCheck": true,
+  },
+  "watchOptions": {},
+}

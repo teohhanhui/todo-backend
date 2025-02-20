@@ -1,0 +1,26 @@
+name: todo-backend
+
+services:
+  server:
+    build:
+      context: ..
+      target: dev
+    command: npm run start:watch
+    init: true
+    environment:
+      PORT: ${PORT:?PORT not set or empty}
+    volumes:
+      - type: bind
+        source: ..
+        target: /srv/todo-backend
+        bind:
+          selinux: z
+        consistency: cached
+    ports:
+      - name: web
+        target: 3000
+        host_ip: 0.0.0.0
+        published: "3000"
+        protocol: tcp
+        app_protocol: http
+        mode: host

@@ -1,0 +1,6 @@
+{
+	"name": "todo-backend",
+	"dockerComposeFile": "compose.yaml",
+	"service": "server",
+	"workspaceFolder": "/srv/todo-backend"
+}
