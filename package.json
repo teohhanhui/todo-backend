@@ -1,16 +1,16 @@
 {
   "name": "todo-backend",
   "version": "0.0.0",
-  "private": true,
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsc --build tsconfig.build.json",
     "start": "node dist/server",
-    "start:watch": "tsc --watch & nodemon --watch dist"
+    "start:watch": "tsc --build tsconfig.build.json --watch & nodemon --watch dist"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "express": "^5.0.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pkg-dir": "^8.0.0"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.8",
@@ -19,5 +19,13 @@
     "@types/node": "^22.13.4",
     "nodemon": "^3.1.9",
     "typescript": "^5.7.3"
+  },
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#app/*": {
+      "@todo-backend/development": "./src/app/*.js",
+      "default": "./dist/app/*.js"
+    }
   }
 }

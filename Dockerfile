@@ -15,7 +15,7 @@ RUN --mount=type=cache,target=/root/.npm \
 	npm ci
 
 COPY src ./src
-COPY tsconfig.json ./
+COPY tsconfig.json tsconfig.build.json ./
 
 ENV NODE_ENV=production
 
@@ -48,7 +48,7 @@ USER node
 COPY --from=builder --chown=node:node /srv/${APP_NAME}/dist ./dist
 COPY --from=builder --chown=node:node /srv/${APP_NAME}/node_modules ./node_modules
 COPY --chown=node:node public ./public
-COPY --chown=node:node package.json package-lock.json ./
+COPY --chown=node:node package.json package-lock.json tsconfig.build.tsbuildinfo ./
 
 ENV NODE_ENV=production
 ENV PORT=3000

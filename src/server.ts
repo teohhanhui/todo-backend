@@ -1,7 +1,8 @@
-import ErrnoException = NodeJS.ErrnoException;
 import http from 'node:http';
 
-import app from '@app/app';
+import app from '#app/app';
+
+type ErrnoException = NodeJS.ErrnoException;
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
@@ -28,8 +29,8 @@ function normalizePort(val: string) {
   return false;
 }
 
-function onError(error: ErrnoException) {
-  if (error.syscall !== 'listen') {
+function onError(error: Error) {
+  if (!isErrnoException(error) || error.syscall !== 'listen') {
     throw error;
   }
 
@@ -38,13 +39,13 @@ function onError(error: ErrnoException) {
     : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
-  switch (error.code) {
+  switch (isErrnoException(error) && error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      console.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      console.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -57,5 +58,14 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  console.log('Listening on ' + bind);
+  console.log(`Listening on ${bind}`);
+}
+
+function isErrnoException(error: Error): error is ErrnoException {
+  return (
+    (error as ErrnoException).errno !== undefined &&
+    (error as ErrnoException).code !== undefined &&
+    (error as ErrnoException).path !== undefined &&
+    (error as ErrnoException).syscall !== undefined
+  );
 }

@@ -1,4 +1,4 @@
-name: todo-backend
+name: todobackend
 
 services:
   server:

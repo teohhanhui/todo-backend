@@ -2,18 +2,15 @@
   "compilerOptions": {
     "strict": true,
 
+    "customConditions": ["@todo-backend/development"],
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "paths": {
-      "@app/*": [
-        "./src/app/*"
-      ],
-    },
 
     "outDir": "dist",
 
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
 
     "target": "es2022",
 
@@ -21,5 +18,4 @@
 
     "skipLibCheck": true,
   },
-  "watchOptions": {},
 }

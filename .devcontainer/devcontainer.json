@@ -1,5 +1,16 @@
 {
 	"name": "todo-backend",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"editorconfig.editorconfig",
+				"filiptibell.tooling-language-server",
+				"github.vscode-github-actions",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
 	"dockerComposeFile": "compose.yaml",
 	"service": "server",
 	"workspaceFolder": "/srv/todo-backend"
