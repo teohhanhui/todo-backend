@@ -5,11 +5,14 @@ services:
     build:
       context: ..
       target: dev
-    command: npm run start:watch
+    command: sh -c 'npm ci && npm run start:watch'
     init: true
     environment:
       PORT: ${PORT:?PORT not set or empty}
     volumes:
+      - type: volume
+        source: npm-cache
+        target: /root/.npm
       - type: bind
         source: ..
         target: /srv/todo-backend
@@ -24,3 +27,6 @@ services:
         protocol: tcp
         app_protocol: http
         mode: host
+
+volumes:
+  npm-cache:

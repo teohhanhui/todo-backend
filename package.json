@@ -4,7 +4,7 @@
   "scripts": {
     "build": "tsc --build tsconfig.build.json",
     "start": "node dist/server",
-    "start:watch": "tsc --build tsconfig.build.json --watch & nodemon --watch dist"
+    "start:watch": "sh -c 'npm run build && { tsc --build tsconfig.build.json --watch & nodemon --watch dist; }'"
   },
   "dependencies": {
     "cookie-parser": "^1.4.7",

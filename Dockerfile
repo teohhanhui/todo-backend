@@ -8,7 +8,9 @@ ARG APP_NAME
 
 WORKDIR /srv/${APP_NAME}
 
-COPY package.json package-lock.json ./
+COPY .npmrc package.json package-lock.json ./
+
+ENV NODE_ENV=production
 
 RUN --mount=type=cache,target=/root/.npm \
 	set -eux; \
@@ -16,8 +18,6 @@ RUN --mount=type=cache,target=/root/.npm \
 
 COPY src ./src
 COPY tsconfig.json tsconfig.build.json ./
-
-ENV NODE_ENV=production
 
 RUN set -eux; \
 	npm run build
